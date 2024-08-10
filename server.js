@@ -1,17 +1,38 @@
+// const express = require('express');
+
+// const server1 = express();
+
+// server1.get('/',(req,res)=>{
+//     res.send('welcome to Express');
+//     res.end();
+// })
+
+// server1.get('/login',(req,res)=>{
+//     res.send({msg:"welcome to Login Page"});
+//     res.end();
+// })
+
+// server1.listen(2609,()=>{
+//     console.log('server start at http://localhost:2609'); 
+// })
+
 const express = require('express');
+const app = express();
 
-const server1 = express();
+// Set some application-level settings
+app.set('name', 'My Express App');
 
-server1.get('/',(req,res)=>{
-    res.send('welcome to Express');
-    res.end();
-})
+// Middleware to print app settings
+app.use((req, res, next) => {
+  console.log(`App name is: ${req.app.get('name')}`);
+  next();
+});
 
-server1.get('/login',(req,res)=>{
-    res.send({msg:"welcome to Login Page"});
-    res.end();
-})
+// Route handler
+app.get('/', (req, res) => {
+  res.send('Welcome to ' + req.app.get('name'));
+});
 
-server1.listen(2609,()=>{
-    console.log('server start at http://localhost:2609'); 
-})
+app.listen(3000, () => {
+  console.log('Server is running on port 3000');
+});
