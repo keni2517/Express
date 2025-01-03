@@ -1,15 +1,19 @@
-// const express = require('express');
-// const app = express();
-// const morgan = require('morgan');
-// const productRoutes = require('./routes/product.routes')
+const express = require('express');
+const app = express();
+const morgan = require('morgan');
+const productRoutes = require('./routes/product.routes')
 
-// app.use(express.json());
-// app.use(express.urlencoded({extended:true}));
-// app.use(morgan('dev'))
+app.use(express.json());
+app.use(express.urlencoded({extended:true}));
+app.use(morgan('dev'))
 
-// app.get("/",(req,res)=>{
-//     res.send("Welcome To Express Server");
-// });
+app.get("/",(req,res)=>{
+    res.send("Welcome To Express Server");
+});
+
+const userRoutes = require("./routes/user.routes");
+app.use("/api/users",userRoutes);
+
 
 // app.post("/product",(req,res)=>{
 //     product.push(req.body)
@@ -126,34 +130,34 @@
 
 
 
-// app.listen(3000, () => {
-//     console.log('Server is running on port 3000');
-//   });
-
-require("dotenv").config()
-const express = require('express');
-const server = express();
-const morgan = require('morgan');
-const mongoose = require('mongoose');
-const port = process.env.PORT;
-server.use(express.json());
-server.use(express.urlencoded({extended: true}));
-server.use(morgan("dev"));
-
-
-server.get("/",(req,res)=>{
-    res.send("Welcome to the Express server");
-});
-
-// Product routes
-const productRoutes = require("./routes/product.routes");
-server.use("/api/product",productRoutes);
-
-// User routes
-const userRoutes = require("./routes/user.routes");
-server.use("/api/users",userRoutes);
-
-
-server.listen(3000, () => {
+app.listen(3000, () => {
     console.log('Server is running on port 3000');
   });
+
+// require("dotenv").config()
+// const express = require('express');
+// const server = express();
+// const morgan = require('morgan');
+// const mongoose = require('mongoose');
+// const port = process.env.PORT;
+// server.use(express.json());
+// server.use(express.urlencoded({extended: true}));
+// server.use(morgan("dev"));
+
+
+// server.get("/",(req,res)=>{
+//     res.send("Welcome to the Express server");
+// });
+
+// // Product routes
+// const productRoutes = require("./routes/product.routes");
+// server.use("/api/product",productRoutes);
+
+// // User routes
+// const userRoutes = require("./routes/user.routes");
+// server.use("/api/users",userRoutes);
+
+
+// server.listen(3000, () => {
+//     console.log('Server is running on port 3000');
+//   });

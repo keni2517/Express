@@ -8,7 +8,7 @@ const {
     changePassword,
     deleteUser
 } = require("../controller/user.controller");
-const {verifyToken} = require("../helpers/tokenVerify")
+const {verifyToken} = require("../helpers/verifytoken")
 
 userRoutes.post("/register",registerUser);
 userRoutes.post("/login",loginUser);
